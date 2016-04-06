@@ -1,8 +1,10 @@
 # Contents
 
-* .vimrc for vim
-* .tmux.conf for tmux
-* .bashrc
+* vimrc for vim
+* tmux.conf for tmux
+* bashrc for bash shell
+* i3config for i3 window manager
+* i3blocks.conf for i3blocks status bar
 
 * dotfiles.sh bash script to make symlinks automatically
 
