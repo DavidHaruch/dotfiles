@@ -1,0 +1,8 @@
+! compose key for french and other languages
+keycode 108 = Multi_key
+
+! rebind caps lock to ctrl
+clear lock
+clear control
+add control = Caps_Lock Control_L Control_R
+keycode 66 = Control_L Caps_Lock NoSymbol NoSymbol

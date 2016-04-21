@@ -47,6 +47,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 
+Plugin 'octol/vim-cpp-enhanced-highlight'
+
 " COlor schemes
 Plugin 'nanotech/jellybeans.vim'
 
@@ -90,5 +92,7 @@ let g:vim_markdown_conceal = 0
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_math = 1
+
+let g:syntastic_disabled_filetypes=['html', 'sass']
 
 set conceallevel=0

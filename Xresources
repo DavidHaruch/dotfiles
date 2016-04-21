@@ -1,0 +1,78 @@
+! VARIBLES with #define lmao?!?!?
+#define BLACK #141414
+#define RED   #cf6a4c
+#define GREEN #99ad6a
+#define YELLO #d8ad4c
+#define BLUE  #597bc5
+#define MAGEN #a037b0
+#define CYAN  #71b9f8
+#define WHITE #f9f9f9
+! who actually knows how to spell it?
+#define GRAY  #404040
+#define GREY  #404040
+
+! RXVT-UNICODE STUFF
+
+URxvt.font: xft:monospace:pixelsize=12,style=Regular,antialias=false
+URxvt.boldFont: xft:monospace:pixelsize=12,style=Bold,antialias=false
+
+! messing up libreoffice
+! Xft.autohint: 0
+! Xft.lcdfilter:  lcddefault
+! Xft.hintstyle:  hintslight
+! Xft.hinting: 0
+! Xft.antialias: 0
+! Xft.rgba: rgb
+
+URxvt.scrollBar: false
+
+URxvt.background: BLACK
+URxvt.foreground: WHITE
+! Jellybeans Terminal Colours
+! black
+urxvt.color0: #888888
+urxvt.color8: #525252
+! red
+urxvt.color1: #cf6a4c
+urxvt.color9: #ff9d80
+! green
+urxvt.color2: #99ad6a
+urxvt.color10: #c3e6ad
+! yellow
+urxvt.color3: #fad07a
+urxvt.color11: #ffefbf
+! blue
+! urxvt.color4: #8197bf
+urxvt.color4: BLUE
+! urxvt.color12: #accaff
+urxvt.color12: BLUE
+! magenta
+urxvt.color5: #8787af
+urxvt.color13: #c4c4ff
+! cyan
+urxvt.color6: #8fbfdc
+urxvt.color14: #80bfaf
+! white
+urxvt.color7: #888888
+urxvt.color15: #e8e8d3
+
+! ROFI
+
+!colors
+rofi.bg: BLACK
+rofi.fg: WHITE
+rofi.hlfg: WHITE
+rofi.hlbg: GRAY
+
+rofi.font: Roboto 12
+rofi.color-enabled: false
+rofi.location: 2
+! magic number incoming, change for your setup
+rofi.yoffset: 23
+! rofi.separator-style: dash
+rofi.separator-style: none
+rofi.columns: 4
+
+!border
+rofi.bw: 2
+rofi.bc: #2c3e50
