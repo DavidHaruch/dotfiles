@@ -1,78 +1,95 @@
-! VARIBLES with #define lmao?!?!?
-#define BLACK #141414
-#define RED   #cf6a4c
-#define GREEN #99ad6a
-#define YELLO #d8ad4c
-#define BLUE  #597bc5
-#define MAGEN #a037b0
-#define CYAN  #71b9f8
-#define WHITE #f9f9f9
-! who actually knows how to spell it?
-#define GRAY  #404040
-#define GREY  #404040
+! ! VARIBLES with #define lmao?!?!?
+! #define BLACK   #141414
+! #define RED     #cf6a4c
+! #define GREEN   #99ad6a
+! #define YELLO   #d8ad4c
+! #define ORANGE  #ffb964
+! #define BLUE    #597bc5
+! #define MAGEN   #a037b0
+! #define CYAN    #71b9f8
+! #define WHITE   #f9f9f9
+! ! who actually knows how to spell it?
+! #define GRAY    #404040
+! #define GREY    #404040
 
-! RXVT-UNICODE STUFF
-
-URxvt.font: xft:monospace:pixelsize=12,style=Regular,antialias=false
-URxvt.boldFont: xft:monospace:pixelsize=12,style=Bold,antialias=false
-
-! messing up libreoffice
-! Xft.autohint: 0
-! Xft.lcdfilter:  lcddefault
-! Xft.hintstyle:  hintslight
-! Xft.hinting: 0
-! Xft.antialias: 0
-! Xft.rgba: rgb
-
-URxvt.scrollBar: false
-
-URxvt.background: BLACK
-URxvt.foreground: WHITE
-! Jellybeans Terminal Colours
-! black
-urxvt.color0: #888888
-urxvt.color8: #525252
-! red
-urxvt.color1: #cf6a4c
-urxvt.color9: #ff9d80
-! green
-urxvt.color2: #99ad6a
-urxvt.color10: #c3e6ad
-! yellow
-urxvt.color3: #fad07a
-urxvt.color11: #ffefbf
-! blue
-! urxvt.color4: #8197bf
-urxvt.color4: BLUE
-! urxvt.color12: #accaff
-urxvt.color12: BLUE
-! magenta
-urxvt.color5: #8787af
-urxvt.color13: #c4c4ff
-! cyan
-urxvt.color6: #8fbfdc
-urxvt.color14: #80bfaf
-! white
-urxvt.color7: #888888
-urxvt.color15: #e8e8d3
+! GRUVBOX color defs
+#define BLACK  #1d2021
+#define BLACK1 #282828
+#define RED    #cc241d
+#define GREEN  #98971a
+#define YELLO  #d79921
+#define ORANGE #d65d0e
+#define BLUE   #458588
+#define PURPLE #b16286
+#define MAGEN  #b16286
+#define CYAN   #689d6a
+#define AQUA   #689d6a
+#define WHITE  #ebdbb2
+#define GRAY   #928374
 
 ! ROFI
 
 !colors
 rofi.bg: BLACK
+rofi.bgalt: BLACK
 rofi.fg: WHITE
-rofi.hlfg: WHITE
-rofi.hlbg: GRAY
+rofi.hlfg: PURPLE
+rofi.hlbg: BLACK
+rofi.fg-active: WHITE
+rofi.bg-active: BLACK
+rofi.hlfg-active: PURPLE
+rofi.hlbg-active: BLACK
 
-rofi.font: Roboto 12
-rofi.color-enabled: false
-rofi.location: 2
-! magic number incoming, change for your setup
-rofi.yoffset: 23
-! rofi.separator-style: dash
-rofi.separator-style: none
-rofi.columns: 4
+rofi.opacity: 100
+rofi.font: Roboto 11
+rofi.hide-scrollbar: true
+
+rofi.location: 0
+rofi.columns: 1
+rofi.lines: 20
+rofi.padding: 10
+rofi.width: 25
 
 !border
-rofi.bw: 2
-rofi.bc: #2c3e50
+rofi.bw: 1
+rofi.bc: GRAY
+
+! URXVT
+!
+! alias Tamzen-14=Tamzen7x14r
+! alias Tamzen7x14r='font -misc-tamzen-medium-r-normal--14-101-100-100-c-70-iso8859-1'
+! alias Tamzen7x14b='font -misc-tamzen-bold-r-normal--14-101-100-100-c-70-iso8859-1'
+
+URxvt.scrollBar: false
+! URxvt.font:font -misc-tamzen-medium-r-normal--14-101-100-100-c-70-iso8859-1
+! URxvt.boldFont:font -misc-tamzen-bold-r-normal--14-101-100-100-c-70-iso8859-1
+URxvt*background: #303030
+urxvt.background: rgba:0000/0000/0000/bbbb
+URxvt.foreground: grey80
+
+*foreground:     rgba:0000/0000/0000/dddd
+*background:     rgb:10/10/10
+! black
+*color0:         rgb:20/20/20
+*color8:         rgb:75/77/73
+!red
+*color1:         rgb:cc/00/00
+*color9:         rgb:ef/29/29
+!green
+*color2:         rgb:4e/9a/06
+*color10:        rgb:8a/e2/34
+!brown/yellow
+*color3:         rgb:c4/a0/00
+*color11:        rgb:fc/e9/4f
+!blue
+*color4:         rgb:34/65/a4
+*color12:        rgb:72/9f/cf
+!magenta
+*color5:         rgb:75/50/7b
+*color13:        rgb:ad/7f/a8
+!cyan
+*color6:         rgb:06/98/9a
+*color14:        rgb:34/e2/e2
+!white
+*color7:         rgb:d3/d7/cf
+*color15:        rgb:ee/ee/ec
