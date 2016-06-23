@@ -8,6 +8,7 @@ set shiftwidth=4
 set smarttab
 set nu
 set cursorline
+set nowrap
 
 set noshowmode
 
@@ -43,7 +44,7 @@ Plugin 'PotatoesMaster/i3-vim-syntax'
 " the one syntax plugin to rule them all!
 Plugin 'sheerun/vim-polyglot'
 " Polyglot's javascript syntax sucks
-Plugin 'jelera/vim-javascript-syntax'
+" Plugin 'jelera/vim-javascript-syntax'
 
 " COlor schemes
 Plugin 'nanotech/jellybeans.vim'
@@ -65,20 +66,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 0
 
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-
 set noshowmode
 
 let g:vim_markdown_frontmatter = 1
-
-" let g:indentLine_char = '│'
-" let g:indentLine_char = '|'
-" let g:indentLine_color_term=239
-" let g:indentLine_showFirstIndentLevel=1
-" let g:indentLine_conceallevel=0
 
 let g:tex_conceal = ""
 
@@ -97,6 +87,12 @@ set scrolloff=5
 " set the vertical split character to the same one as tmux
 set fillchars+=vert:│
 
+" set persistent undo
+set undofile
+set undodir=~/.vim/undo
+set undoreload=10000
+set undolevels=1000
+
 " for the vim-markdown plugin
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_folding_disabled = 1
@@ -109,23 +105,19 @@ let g:syntastic_mode_map = {
     \ "mode": "active",
     \ "passive_filetypes": ["css","sass","json","html"] }
 
-" I REALLY hate conceal and don't want it EVER
-let g:indentLine_conceallevel=0
-set conceallevel=0
-setl conceallevel=0
-autocmd FileType * setlocal conceallevel=0
 
 " general ease of use bindings
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap <leader>/ :noh<CR>
 
 let mapleader = "\<Space>"
 
+nnoremap <leader>/ :noh<CR>
+
 set rtp+=~/.fzf
-let g:fzf_buffers_jump = 1
+" let g:fzf_buffers_jump = 1
 
 " binds for fzf
 nnoremap <Tab>f :Files<CR>
@@ -134,15 +126,44 @@ nnoremap <Tab>b :Buffers<CR>
 nnoremap <Tab>l :Lines<CR>
 
 autocmd FileType html,css,sass,scss,jade,pug EmmetInstall
-let g:user_emmet_expandabbr_key = '<C-y>'
 
-let g:polyglot_disabled = ['javascript']
+" let g:polyglot_disabled = ['javascript']
 
 " binds for folding easier
 set foldmethod=indent
 set foldminlines=2
 set foldnestmax=3
-hi Folded ctermbg=none
 nnoremap <Tab><leader> za
 
 colorscheme gruvbox
+hi Folded ctermbg=235
+hi VertSplit ctermfg=237
+
+nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+            \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+            \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+let g:indentLine_char = '│'
+let g:indentLine_color_term=239 " gruvbox bg2
+let g:indentLine_showFirstIndentLevel=0
+let g:indentLine_conceallevel=1
+
+set conceallevel=1
+
+" add some missing syntax higlighting for javascript
+" put this in the right file
+syntax keyword javaScriptHtmlElemAttrs className clientHeight clientLeft clientTop clientWidth dir id innerHTML lang length offsetHeight offsetLeft offsetParent offsetTop offsetWidth scrollHeight scrollLeft scrollTop scrollWidth style tabIndex title htmlFor name textContent type
+
+" syntax keyword javaScriptHtmlElemAttrs htmlFor id name
+syntax keyword jsDomElemFuncs insertBefore replaceChild removeChild appendChild hasChildNodes cloneNode normalize isSupported hasAttributes getAttribute setAttribute removeAttribute getAttributeNode setAttributeNode removeAttributeNode getElementById getElementsByClassName getElementsByTagName querySelector querySelectorAll getAttributeNS setAttributeNS removeAttributeNS getAttributeNodeNS setAttributeNodeNS getElementsByTagNameNS hasAttribute hasAttributeNS createElement
+
+syntax keyword jsDomElemAttrs nodeName nodeValue nodeType parentNode childNodes firstChild lastChild previousSibling nextSibling attributes ownerDocument namespaceURI prefix localName tagName
+
+syntax keyword jsHtmlElemFuncs blur click focus scrollIntoView addEventListener dispatchEvent removeEventListener item
+
+
+hi link javaScriptHtmlElemAttrs GruvboxRed
+hi link jsDomElemFuncs GruvboxAqua
+hi link jsHtmlElemFuncs jsDomElemFuncs
+hi link jsDomElemAttrs GruvboxGreen
+

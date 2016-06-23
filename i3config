@@ -1,103 +1,96 @@
-# i3 config file (v4)
-#
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
 set $mod Mod4
 
 font pango:Roboto 10
-
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi, an alternative to dmenu
 bindsym $mod+d exec rofi -show run
 bindsym $mod+Shift+d exec rofi -show window
 
-# change focus with vim bindings
+# common app launcher
+bindsym $mod+c exec ~/scripts/i3_app_launcher
+
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
 bindsym $mod+z split h
 
-# split in vertical orientation
 bindsym $mod+v split v
 
-# enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
 bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
-# TITLE BAR CONFIG
-
-# COLORS
 
 set $dark #31363b
 set $grey #4d4d4d
 set $darkblue #2c3e50
 
-# Jellybeans colorscheme colors
+# Gruvbox colors
 
-set $black    #141414
-set $red      #cf6a4c
-set $green    #99ad61
-set $yellow   #d8ad4c
-set $orange   #ffb964
-set $blue     #597bc5
-set $indigo   #8787af
-set $magenta  #a037b0
-set $cyan     #71b9f8
-set $white    #f9f9f9
-set $gray     #404040
-set $grey     #404040
+set $BLACK  #1d2021
+set $BLACK1 #282828
+set $BLACK2 #504945
+set $BLACK3 #665c54
+set $BLACK4 #7c6f64
 
-#class                  border      backgr.   text      indicator   child_border
-client.focused          $darkblue   $darkblue #ffffff   $darkblue   $darkblue
-client.focused_inactive #333333     #5f676a   #ffffff   #484e50     #5f676a
-client.unfocused        #333333     $dark     #888888   #292d2e     #222222
-client.urgent           #2f343a     $orange   #ffffff   $orange     $orange
-client.placeholder      #000000     #0c0c0c   #ffffff   #000000     #0c0c0c
+set $WHITE  #ebdbb2
+set $WHITE0 #fbf1c7
+set $WHITE1 #ebdbb2
+set $WHITE2 #d5c4a1
+set $WHITE3 #bdae93
+set $WHITE4 #a89984
+
+set $GRAY   #928374
+
+set $RED    #cc241d
+set $GREEN  #98971a
+set $YELLO  #d79921
+set $ORANGE #d65d0e
+set $BLUE   #458588
+set $PURPLE #b16286
+set $MAGEN  #b16286
+set $CYAN   #689d6a
+set $AQUA   #689d6a
+
+set $LIGHT_RED    #fb4934
+set $LIGHT_GREEN  #b8bb26
+set $LIGHT_YELLO  #fabd2f
+set $LIGHT_ORANGE #fe8019
+set $LIGHT_BLUE   #83a598
+set $LIGHT_PURPLE #d3869b
+set $LIGHT_MAGEN  #d3869b
+set $LIGHT_CYAN   #8ec07c
+set $LIGHT_AQUA   #8ec07c
+
 
 hide_edge_borders both
 new_window pixel 0
@@ -139,42 +132,39 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# binds certain programs to start in certain workspaces
-# use xprop to find the class
-
-assign [class="google-chrome"] $ws1
 assign [class="Firefox"] $ws1
-
 assign [class="Google Play Music Desktop Player"] $ws10
 
-# lock the screen with mod+l
 
-# reload the configuration file
+set $sysmenu "do whatever you want to do"
+bindsym $mod+Delete exec ~/scripts/i3_system_prompt
+
+set $LOCKER "i3lock-color --image=/home/david/Pictures/backgrounds/nasa/moon_1080.png --textcolor=ffffff00 --insidecolor=ffffff1c --ringcolor=ffffff3e --linecolor=ffffff00 --keyhlcolor=00000080 --ringvercolor=00000000 --separatorcolor=22222260 --insidevercolor=0000001c --ringwrongcolor=00000055 --insidewrongcolor=0000001c"
+
+# mode $sysmenu {
+#     bindsym l         exec $LOCKER; mode "default"
+#     bindsym r         restart
+#     bindsym e         exit
+#     bindsym p         exec shutdown -P now
+#     bindsym b         exec shutdown -r now
+#     bindsym k         exec google-chrome
+#     bindsym Return    mode "default"
+#     bindsym Escape    mode "default"
+# }
+
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
         bindsym l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
-
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -184,9 +174,12 @@ bindsym $mod+r mode "resize"
 
 bindsym $mod+Ctrl+l exec xdotool key Caps_Lock
 
-# WINDOW STYLES
-
-for_window [class="^.*"] title_format "%title %class"
+# class                 border  backgr. text    indicator child_border
+client.focused          $BLACK1 $BLACK1 $WHITE #2e9ef4   #285577
+client.focused_inactive $BLACK0 $BLACK $WHITE #484e50   #5f676a
+client.unfocused        $BLACK0 $BLACK $WHITE4 #292d2e   #222222
+client.urgent           $RED    $BLACK $WHITE #900000   #900000
+client.placeholder      $BLACK  $BLACK $WHITE #000000   #0c0c0c
 
 # BAR CONFIG
 
@@ -197,10 +190,15 @@ bar {
     tray_output none
     font pango:Roboto 10
     position top
+    separator_symbol "∫"
     colors {
-        #                  border          backgr     text
-        focused_workspace  $window_border  $darkblue  #ffffff
-        urgent_workspace   $window_border  $red       #ffffff
+        background $BLACK1
+        statusline $WHITE
+        separator  $BLACK3
+
+        focused_workspace  $BLACK1 $BLACK2 $WHITE
+        inactive_workspace $BLACK1 $BLACK1 $BLACK4
+        urgent_workspace   $BLACK1 $WHITE  $BLACK
     }
 }
 
@@ -220,20 +218,15 @@ bindsym $mod+F5 exec dbus-send --type=method_call  --dest=org.mpris.MediaPlayer2
 bindsym $mod+F4 exec dbus-send --type=method_call  --dest=org.mpris.MediaPlayer2.google-play-music-desktop-player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym $mod+F6 exec dbus-send --type=method_call  --dest=org.mpris.MediaPlayer2.google-play-music-desktop-player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 
-# bindcode 165
-
 bindsym Print exec ksnapshot
-# bindsym Print exec scrot ~/Screenshots/%Y-%m-%d-%T-screenshot.png
-# exec --no-startup-id xsetroot -solid "#444444" for a solid background
-# set a bg image, see options for pic postition in man feh
-exec_always feh --bg-fill ~/Pictures/backgrounds/nasa/astronaut_in_space.jpeg
+
+set $BG_IMAGE ~/Pictures/backgrounds/nasa/astronaut_in_space.jpeg
+
+exec_always feh --bg-fill $BG_IMAGE
 
 # Lock screen stuff
-bindsym $mod+b exec "i3lock-color --image=/home/david/Pictures/backgrounds/nasa/moon_1080_crop.png --textcolor=ffffff00 --insidecolor=ffffff1c --ringcolor=ffffff3e --linecolor=ffffff00 --keyhlcolor=00000080 --ringvercolor=00000000 --separatorcolor=22222260 --insidevercolor=0000001c --ringwrongcolor=00000055 --insidewrongcolor=0000001c"
-# bindsym $mod+b exec "randLockColor.sh"
-exec_always xautolock -time 5 -locker "i3lock-color --image=/home/david/Pictures/backgrounds/nasa/moon_1080_crop.png --textcolor=ffffff00 --insidecolor=ffffff1c --ringcolor=ffffff3e --linecolor=ffffff00 --keyhlcolor=00000080 --ringvercolor=00000000 --separatorcolor=22222260 --insidevercolor=0000001c --ringwrongcolor=00000055 --insidewrongcolor=0000001c" -nowlocker "i3lock -i /home/david/Pictures/backgrounds/bg_lock_1080_blue.png -corners ---+"
-# exec_always xautolock -time 5 -locker "randLockColor.sh" -nowlocker "randLockColor.sh"
-# exec_always no_timeout
+bindsym $mod+b exec $LOCKER
+exec_always xautolock -time 5 -locker $LOCKER -corners ---+"
 
 # keyboard stuff
 exec xmodmap ~/.Xmodmap
@@ -246,7 +239,7 @@ exec_always --no-startup-id redshift
 exec_always export DESKTOP_SESSION="kde"
 
 # Programs to start everytime
-exec compton -b --vsync opengl --inactive-dim 0.1
+exec compton -b --vsync opengl --inactive-dim 0.0
 
 # vim:filetype=i3
 
