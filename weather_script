@@ -1,1 +1,38 @@
-/home/david/.openweathermap/weather.js
+#!/usr/bin/env node
+var http = require('http');
+var API_KEY =  require('./api_key.json').key;
+var loc = require('./api_key.json').loc;
+var url = 'http://api.openweathermap.org/data/2.5/weather?q='+loc+'&APPID='+API_KEY;
+
+var k_to_f = function (ktemp) {
+    f = (1.8)*(ktemp - 273) + 32;
+    return Math.floor(f) + '°F';
+};
+
+http.get(url,function(res){
+    var body = '';
+    res.on('data', function(new_data){
+        body += new_data;
+    });
+    res.on('end', function(){
+        console.log(body);
+        outData(body);
+    });
+});
+
+function outData (str) {
+    var json = JSON.parse(str);
+    var final = '';
+    var spacer = ' - ';
+
+    final += k_to_f(json.main.temp);
+    final += spacer;
+    final += json.weather[0].main;
+
+    console.log(final);
+}
+
+
+// OPTION 2 http://rss.accuweather.com/rss/liveweather_rss.asp?locCode=ZIPCODE
+// but xml sucks :-(
+
