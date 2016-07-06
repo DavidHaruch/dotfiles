@@ -1,4 +1,12 @@
 #!/usr/bin/env node
+
+// NEEDS A FILE api_key.json in same dir
+// looks like
+// {
+// "key": your openweathermap api key
+// "loc": your city name and state/nation code
+// }
+
 var http = require('http');
 var API_KEY =  require('./api_key.json').key;
 var loc = require('./api_key.json').loc;
