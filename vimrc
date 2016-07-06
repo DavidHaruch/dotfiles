@@ -49,6 +49,7 @@ Plugin 'sheerun/vim-polyglot'
 " COlor schemes
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'morhetz/gruvbox'
+Plugin 'roosta/srcery'
 
 call vundle#end()
 filetype plugin indent on
@@ -115,6 +116,7 @@ nnoremap <C-H> <C-W><C-H>
 let mapleader = "\<Space>"
 
 nnoremap <leader>/ :noh<CR>
+nnoremap <leader>; $a;<C-C>
 
 set rtp+=~/.fzf
 " let g:fzf_buffers_jump = 1
@@ -133,6 +135,7 @@ autocmd FileType html,css,sass,scss,jade,pug EmmetInstall
 set foldmethod=indent
 set foldminlines=2
 set foldnestmax=3
+set foldopen+=jump
 nnoremap <Tab><leader> za
 
 colorscheme gruvbox
